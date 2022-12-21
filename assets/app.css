@@ -1,2 +1,108 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900);
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'roboto', sans-serif;
+}
+body{
+	background: #000212;
+	min-height: 100vh;
+	color: white;
+}
+.container {
+	min-height: 400px;
+	max-width: 1210px;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+#welcome{
+	margin-top: 6rem;
+}
+#welcome .own h1{
+	font-size: 2rem;
+	font-weight: bolder;
+	margin: 10px 0;
+}
+#welcome .own span{
+	border-left:4px solid #09bd72;
+	padding: 5px;
+	font-style: italic;
+	font-weight: lighter;
+	font-size: 1.5rem;
+	text-align: right;
+}
+#welcome .slogan{
+	min-height: 400px;
+	display: flex;
+	justify-content: space-between;
+	align-items:flex-start;
+	background-image: url('../assets/images/figure.png');
+	background-repeat: no-repeat;
+	background-position: 100%;
+}
+#welcome .slogan .title{
+	text-align: left;
+	max-width: 65%;
+	margin: 20px 0;
+}
+#welcome .slogan .title h1{
+	font-size: 3.6rem;
+	font-weight: bolder;
+	margin: 10px 0;
+	word-break: break-word;
+}
+#welcome .slogan .gotoPortfolio a{
+	border: 1px solid #44c767;
+	background:transparent;
+	display: inline-block;
+	margin: 30px 0;
+	padding: 15px 30px;
+	border-radius:8px;
+	color: white;
+	font-weight: bold;
+	appearance: none;
+	text-decoration: none;
+	
+}
+#welcome .slogan .gotoPortfolio a:hover{
+	/* linear gradient only in the border, the background is transparent */
+	display: inline-block;
+	margin: 30px 0;
+	padding: 15px 30px;
+	border: none;
+	box-shadow: 1px 3px 14px 4px #09924d;
+	background:linear-gradient(to right, #5311a4 5%, #0ebf9c 100%);
+	background-color:#0da190;
+	border-radius:8px;
+	color: white;
+	font-weight: bold;
+	appearance: none;
+	text-decoration: none;
+	transition: ease-in 0.3s;
+}
+#skills h1{
+	font-size: 2rem;
+	font-weight: bolder;
+	margin: 10px 0;
+}
+#skills div{
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+#skills .badges{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 30px;
+	width: 50px;
+	height: 50px;
+	border-radius: 5px;
+	border: 2px solid #070935;
+	box-shadow: 1px 1px 10px rgba(8, 180, 145, 0.25);
+}
+
