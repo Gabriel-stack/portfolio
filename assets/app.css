@@ -1,6 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900);
-
+:root{
+	--tooltip-width: 300px;
+	--fs-text: 1.2rem;
+	--fs-title: 3.6rem;
+}
 *{
 	margin: 0;
 	padding: 0;
@@ -8,9 +12,10 @@
 	font-family: 'roboto', sans-serif;
 }
 body{
-	background: #000212;
+	background: #000212 ;
 	min-height: 100vh;
 	color: white;
+	animation: 2s ease-in-out 0.5s;
 }
 .container {
 	min-height: 400px;
@@ -18,12 +23,15 @@ body{
 	margin: 0 auto;
 	padding: 0 10px;
 }
+section:not(section:nth-child(1)){
+	padding-block: 5.5rem;
+}
 
 #welcome{
 	margin-top: 6rem;
 }
 #welcome .own h1{
-	font-size: 2rem;
+	font-size: var(--fs-text);
 	font-weight: bolder;
 	margin: 10px 0;
 }
@@ -32,7 +40,7 @@ body{
 	padding: 5px;
 	font-style: italic;
 	font-weight: lighter;
-	font-size: 1.5rem;
+	font-size: var(--fs-text);
 	text-align: right;
 }
 #welcome .slogan{
@@ -40,7 +48,7 @@ body{
 	display: flex;
 	justify-content: space-between;
 	align-items:flex-start;
-	background-image: url('../assets/images/figure.png');
+	background-image:url('../assets/images/figure.png');
 	background-repeat: no-repeat;
 	background-position: 100%;
 }
@@ -50,10 +58,13 @@ body{
 	margin: 20px 0;
 }
 #welcome .slogan .title h1{
-	font-size: 3.6rem;
+	font-size: var(--fs-title);
 	font-weight: bolder;
 	margin: 10px 0;
 	word-break: break-word;
+	/* background:  -webkit-linear-gradient(90deg, hsla(197, 100%, 63%, 1) 0%, hsla(294, 100%, 55%, 1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent; */
 }
 #welcome .slogan .gotoPortfolio a{
 	border: 1px solid #44c767;
@@ -84,7 +95,7 @@ body{
 	text-decoration: none;
 	transition: ease-in 0.3s;
 }
-#skills h1{
+#skills h1, #portfolio h1, #contact h1{
 	font-size: 2rem;
 	font-weight: bolder;
 	margin: 10px 0;
@@ -95,6 +106,7 @@ body{
 	flex-wrap: wrap;
 }
 #skills .badges{
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -105,4 +117,114 @@ body{
 	border: 2px solid #070935;
 	box-shadow: 1px 1px 10px rgba(8, 180, 145, 0.25);
 }
+#skills .badges .info-badge{
+	display: none;
+	padding: 10px;
+	font-weight: 500;
+	overflow: hidden;
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	background-color: white;
+	border-radius: 5px;
+	width: var(--tooltip-width);
+	min-height: 100px;
+	border: none;
+	color: black;
+	z-index: 1;
+}
+#skills .badges:hover  .info-badge{
+	display: block;
+}
+#portfolio .name_section{
+	margin-top:  20px;
+}
+#portfolio .carousel{
+	width: 100%;
+	position: relative;
+	margin-top: 5rem;
+	overflow: visible;
+}
+#portfolio .carousel .slide{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	opacity: 0;
+	transition: opacity 0.5s;
+}
+#portfolio .carousel .slide.active{
+	opacity: 1;
+}
+#portfolio .carousel .slide .image img{
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: 8px;
+}	
+#portfolio .carousel .slide .resume{
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+#portfolio .carousel .slide .resume h1{
+	text-align: center;
+	font-size: var(--fs-title);
+}
+#portfolio .carousel .slide .resume p{
+	text-align: justify;
+	font-size: var(--fs-text);
+}
 
+#prev-button, #next-button{
+	position: absolute;
+	border: none;
+	border-radius: 5px;
+	background-color: #252525;
+	color: white;
+	padding: 10px;
+	cursor: pointer;
+	z-index: 10;
+	width: clamp(80px, 100px, 130px);
+}
+#prev-button{	
+	top: 50%;
+	right: 130px;
+	transform: translateY(-50%);
+	font-size: 2rem;
+}
+#next-button{
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	font-size: 2rem;
+	
+}
+@keyframes opacity{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+@media screen and (max-width: 520px) {
+	:root{
+		--tooltip-width: 200px;
+		--fs-text: 0.8rem;
+		--fs-title: 2rem;
+	}
+}
+@media screen and (max-width: 778px){
+	:root{
+		--fs-text: 1rem;
+		--fs-title: 2.5rem;
+	}
+}
