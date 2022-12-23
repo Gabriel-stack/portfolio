@@ -55,5 +55,5 @@ document.addEventListener("DOMContentLoaded", () => {
 			currentSlide.classList.add("active");
 		}
 	}
-	setInterval(carousel, 3000);
+	setInterval(carousel, 5000);
 });
