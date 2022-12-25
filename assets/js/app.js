@@ -18,42 +18,50 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	})();
 
-	const slides = document.querySelectorAll(".slide");
-	const prevButton = document.querySelector("#prev-button");
-	const nextButton = document.querySelector("#next-button");
-
-	let currentSlide = document.querySelector(".slide.active");
-
-	prevButton.addEventListener("click", () => {
-		updateCurrentSlide('<');
+	const projects = document.querySelector(".projects");
+	projects.querySelectorAll(".project_label").forEach((project) => {
+		project.addEventListener("click", () => {
+			let project_id = project.getAttribute("data-id");
+			let project_content = document.querySelector(`#${project_id}`);
+			let exists = document.querySelector(".slide.active");
+			if (exists) {
+				exists.classList.remove("active");
+			}
+			project_content.classList.toggle("active");
+		});
 	});
-	nextButton.addEventListener("click", () => {
-		updateCurrentSlide();
-	});
 
-	function updateCurrentSlide(direction = '>', current = null) {
-		current = document.querySelector(".slide.active");
-		current.classList.remove("active")
-		if (direction === "<") {
-			current = current.previousElementSibling || slides[slides.length - 1];
-		} else {
-			if(current == slides[slides.length - 1]){
-				current = slides[0];
-			}else{
-				current = current.nextElementSibling;
+	function writeTextSlogan() {
+		const slogan = document.querySelector(".slogan .title h1");
+		const phrases = [
+			"Vivendo e respirando tecnologia",
+			"Apaixonado por criar soluções",
+			"Desenvolvedor Full Stack",
+		];
+		let currentPhraseIndex = 0;
+
+		function writePhrase(phrase) {
+			slogan.textContent = ""; // limpa o conteúdo do elemento
+			for (let i = 0; i < phrase.length; i++) {
+				setTimeout(() => {
+					slogan.textContent += phrase[i];
+				}, 75 * i);
 			}
 		}
-		current.classList.add("active");
+
+		function writeNextPhrase() {
+			if (currentPhraseIndex === phrases.length) {
+				currentPhraseIndex = 0; // volta para a primeira frase do array
+			}
+			const currentPhrase = phrases[currentPhraseIndex];
+			writePhrase(currentPhrase);
+			currentPhraseIndex++;
+		}
+
+		setTimeout(writeNextPhrase, 0); // escreve a primeira frase imediatamente
+		setInterval(writeNextPhrase, 5000); // escreve a próxima frase a cada 5 segundos
 	}
 
-	function carousel() {
-		if (currentSlide.nextElementSibling) {
-			updateCurrentSlide(currentSlide);
-		} else {
-			currentSlide.classList.remove("active");
-			currentSlide = slides[0];
-			currentSlide.classList.add("active");
-		}
-	}
-	setInterval(carousel, 5000);
+	writeTextSlogan();
 });
+
