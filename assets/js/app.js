@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		let currentPhraseIndex = 0;
 
 		function writePhrase(phrase) {
-			slogan.textContent = ""; // limpa o conteúdo do elemento
+			slogan.textContent = "";
 			for (let i = 0; i < phrase.length; i++) {
 				setTimeout(() => {
 					slogan.textContent += phrase[i];
@@ -51,15 +51,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		function writeNextPhrase() {
 			if (currentPhraseIndex === phrases.length) {
-				currentPhraseIndex = 0; // volta para a primeira frase do array
+				currentPhraseIndex = 0; 
 			}
 			const currentPhrase = phrases[currentPhraseIndex];
 			writePhrase(currentPhrase);
 			currentPhraseIndex++;
 		}
-
-		setTimeout(writeNextPhrase, 0); // escreve a primeira frase imediatamente
-		setInterval(writeNextPhrase, 5000); // escreve a próxima frase a cada 5 segundos
+		document.addEventListener("visibilitychange", () => {
+			
+		if(document.visibilityState === "hidden" || window.onblur === true) {
+			clearInterval();
+		}
+		});
+		setTimeout(writeNextPhrase, 0); 
+		setInterval(writeNextPhrase, 5000); 
 	}
 
 	writeTextSlogan();
